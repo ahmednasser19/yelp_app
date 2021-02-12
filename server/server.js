@@ -1,28 +1,65 @@
 require("dotenv").config();
+const { json } = require("express");
 const express = require("express");
 const morgan = require("morgan");
 
 const app = express();
+app.use(express.json()); /// get the body sotred >>> not only sotored in the body , it takes json that we take from the client and covert it  to stander js object that we can manipulte where we wnat
 
-app.use(morgan("dev"));
-/// get all the restaurants
+// get all the restaurants
 app.get("/api/v1/restaurants", (req, res) => {
+  console.log(req.params);
   res.status(200).json({
+    // get back json
     status: "success",
     data: {
-      restuarant: ["macdonds", "wensy"],
+      restuarant: ["macdonds", "wensy", "hardees"],
     },
   });
 });
 
-// get a Restaurant
-app.get("/api/vi/restaurants/:id", (req, res) => {
-  console.log(req);
+// // get a Restaurant
+app.get("/api/v1/restaurants/:id", (req, res) => {
+  console.log(req.params);
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      restaurant: "mac",
+    },
+  });
 });
 
 /// create a restuarats
-app.post("/api/vi/restaurants/", (req, res) => {
-  console.log(req);
+app.post("/api/v1/restaurants/", (req, res) => {
+  console.log(req.body);
+
+  res.status(201).json({
+    status: "success",
+    data: {
+      restaurant: "mac",
+    },
+  });
+});
+
+// update the resturant
+app.put("/api/v1/restaurants/:id", (req, res) => {
+  console.log(req.params.id);
+  console.log(req.body);
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      restaurant: "mac",
+    },
+  });
+});
+
+// /// delete the resturant
+app.delete("/api/v1/restaurants/:id", (req, res) => {
+  res.status(204).json({
+    status: "success",
+  });
 });
 
 const port = process.env.PORT || 3001;
