@@ -8,16 +8,21 @@ app.use(express.json()); /// get the body sotred >>> not only sotored in the bod
 
 // get all the restaurants
 app.get("/api/v1/restaurants", async (req, res) => {
-  const results = await db.query("select * from restaurants");
+  try {
+    const results = await db.query("select * from restaurants");
 
-  console.log(results);
-  res.status(200).json({
-    // get back json
-    status: "success",
-    data: {
-      restuarant: ["macdonds", "wensy", "hardees"],
-    },
-  });
+    console.log(results);
+    res.status(200).json({
+      // get back json
+      status: "success",
+      results: results.rows.length,
+      data: {
+        restuarants: results.rows,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 // // get a Restaurant
