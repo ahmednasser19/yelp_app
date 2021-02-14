@@ -3,7 +3,7 @@ import React from "react";
 const AddRestaurant = () => {
   return (
     <div className="mb-4">
-      <form class="form-inline" action="">
+      <form className="form-inline" action="">
         <div className="row">
           <div className="col  pl-5">
             <input type="text" className="form-control" placeholder="name" />
