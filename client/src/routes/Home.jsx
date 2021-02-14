@@ -1,10 +1,15 @@
-import React from 'react'
+import React from "react";
+import AddRestaurant from "../components/AddRestaurant";
+import Header from "../components/Header";
+import RestaurantList from "../components/RestaurantList";
 
 export const Home = () => {
-    return (
-        <div>
-            Home
-        </div>
-    )
-}
-export default Home; 
+  return (
+    <div>
+      <Header />
+      <AddRestaurant />
+      <RestaurantList />
+    </div>
+  );
+};
+export default Home;
