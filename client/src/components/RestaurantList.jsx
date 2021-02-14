@@ -2,14 +2,14 @@ import React, { useContext, useEffect } from "react";
 import RestaurantFinder from "../apis/RestaurantFinder";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 const RestaurantList = (props) => {
-  const { restuarants, setRestaurants } = useContext(RestaurantsContext);
+  const { restaurants, setRestaurants } = useContext(RestaurantsContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await RestaurantFinder.get("/");
 
-        setRestaurants(response.data.data.restuarants);
+        setRestaurants(response.data.data.restaurants);
       } catch (err) {}
     };
 
@@ -30,13 +30,13 @@ const RestaurantList = (props) => {
           </tr>
         </thead>
         <tbody>
-          {restuarants &&
-            restuarants.map((restuarants) => {
+          {restaurants &&
+            restaurants.map((restaurants) => {
               return (
-                <tr key={restuarants.id}>
-                  <td>{restuarants.name}</td>
-                  <td>{restuarants.location}</td>
-                  <td>{"$".repeat(restuarants.price_range)}</td>
+                <tr key={restaurants.id}>
+                  <td>{restaurants.name}</td>
+                  <td>{restaurants.location}</td>
+                  <td>{"$".repeat(restaurants.price_range)}</td>
                   <td>reviews</td>
                   <td>
                     <button className="btn btn-warning">update</button>

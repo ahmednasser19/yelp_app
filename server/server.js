@@ -20,7 +20,7 @@ app.get("/api/v1/restaurants", async (req, res) => {
       status: "success",
       results: results.rows.length, /// the number of the results
       data: {
-        restuarants: results.rows,
+        restaurants: results.rows,
       },
     });
   } catch (err) {
@@ -39,7 +39,7 @@ app.get("/api/v1/restaurants/:id", async (req, res) => {
     res.status(200).json({
       status: "success",
       data: {
-        restaurant: results.rows[0],
+        restaurants: results.rows[0],
       },
     });
   } catch (err) {
@@ -59,7 +59,7 @@ app.post("/api/v1/restaurants/", async (req, res) => {
     res.status(201).json({
       status: "success",
       data: {
-        restaurant: results.rows[0],
+        restaurants: results.rows[0],
       },
     });
   } catch (err) {
@@ -78,7 +78,7 @@ app.put("/api/v1/restaurants/:id", async (req, res) => {
     res.status(200).json({
       status: "success",
       data: {
-        restaurant: resutls.rows[0],
+        restaurants: resutls.rows[0],
       },
     });
   } catch (err) {
