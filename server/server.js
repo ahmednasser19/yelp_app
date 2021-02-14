@@ -1,9 +1,12 @@
 require("dotenv").config();
 const { json } = require("express");
+const cors = require("cors");
 const express = require("express");
 const morgan = require("morgan");
 const db = require("./db");
 const app = express();
+
+app.use(cors());
 app.use(express.json()); /// get the body sotred >>> not only sotored in the body , it takes json that we take from the client and covert it  to stander js object that we can manipulte where we wnat
 
 // get all the restaurants
@@ -71,7 +74,6 @@ app.put("/api/v1/restaurants/:id", async (req, res) => {
       "UPDATE restaurants SET name = $1 , location = $2 , price_range= $3 where id= $4  returning * ",
       [req.body.name, req.body.location, req.body.price_range, req.params.id]
     );
-    console.log(resutls);
 
     res.status(200).json({
       status: "success",
